@@ -2,10 +2,13 @@ Rails.application.routes.draw do
 
   get 'posts' => 'posts#index'
 
-  get 'posts/0', to: 'posts#post0'
-  get 'posts/1', to: 'posts#post1'
-  get 'posts/2', to: 'posts#post2'
-  get 'posts/3', to: 'posts#post3'
+  # if a request comes in with "/posts/192023675"
+  # ... or anything else after "/posts", it can handle it no problem.
+
+  # our routes file is looking for stuff after "/posts,"
+  # ... it knows to capture that number in params[:id]
+  # ... and pass it through to the appropriate controller.
+  get 'posts/:id', to: 'posts#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
