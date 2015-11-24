@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get 'posts' => 'posts#index'
   get 'posts/new', to: 'posts#new'
+  get 'posts/:id/edit', to: 'posts#edit'
 
   # if a request comes in with "/posts/192023675"
   # ... or anything else after "/posts", it can handle it no problem.
@@ -9,7 +10,8 @@ Rails.application.routes.draw do
   # our routes file is looking for stuff after "/posts,"
   # ... it knows to capture that number in params[:id]
   # ... and pass it through to the appropriate controller.
-  get 'posts/:id', to: 'posts#show'
+  get 'posts/:id', to: 'posts#show', as: 'post' # necessary for the update action!
+  patch 'posts/:id',    to: 'posts#update'
   post 'posts',    to: 'posts#create'
 
 
