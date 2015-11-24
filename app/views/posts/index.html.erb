@@ -1,7 +1,13 @@
+<!-- gotten our new_post_path and post_path from resources -->
+<!-- Notice you pass post_path the object itself,
+  so Rails knows which record you'd like to display. -->
 <h1>Lighthouse Forum</h1>
 <hr>
+<%= link_to "Create a post!", new_post_path %>
+<hr>
 <% @posts.each do |post| %>
-  <h2><%= post.title %></h2>
+  <h2><%= link_to post.title, post_path(post) %></h2>
   <p><%= post.text %></p>
   <small>- <%= post.author %></small>
 <% end %>
+
